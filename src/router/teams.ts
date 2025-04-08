@@ -27,6 +27,7 @@ teamsRouter.post("/", async (req, res) => {
                 players: {
                     createMany: {
                         data: players.map((player: any) => ({
+                            acronym: player.acronym,
                             name: player.name,
                             firstname: player.firstname,
                             pseudo: player.pseudo,

@@ -38,7 +38,8 @@ model Player {
 
 model Team {
   id    Int    @id @default(autoincrement())
-  name  String
+  name  String @unique
+  acronym String @unique
   players Player[]
 
   createAt DateTime @default(now())
