@@ -16,7 +16,7 @@ teamsRouter.get("/", async (req, res) => {
 });
 
 teamsRouter.post("/", async (req, res) => {
-    const { name, players } = req.body.data;
+    const { name, players } = req.body;
     if(!name || !players) {
         res.status(400).send("Missing required information");
     }
@@ -28,9 +28,10 @@ teamsRouter.post("/", async (req, res) => {
                     createMany: {
                         data: players.map((player: any) => ({
                             name: player.name,
-                            firsname: player.firstname,
+                            firstname: player.firstname,
                             pseudo: player.pseudo,
-                            rankId: player.rankId
+                            promoId: player.promoId,
+                            levelId: player.rankId
                         }))
                     }
                 }  

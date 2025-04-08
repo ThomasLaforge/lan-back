@@ -1,1 +1,35 @@
+@apiUrl = http://localhost:1992
+
 ###
+GET {{apiUrl}}/api/rankings
+
+###
+GET {{apiUrl}}/api/rl-ranks
+
+###
+POST {{apiUrl}}/api/teams
+Content-Type: application/json
+
+{
+  "name": "Team Name",
+  "players": [
+    {
+      "name": "Player Name",
+      "firstname": "First Name",
+      "pseudo": "Player Pseudo",
+      "rankId": 5,
+      "promoId": 1
+    },
+    {
+      "name": "Laforge",
+      "firstname": "Thomas",
+      "pseudo": "McPaulo",
+      "rankId": 1,
+      "promoId": 4
+    }
+  ]
+}
+
+### GET teams
+GET {{apiUrl}}/api/teams
+
