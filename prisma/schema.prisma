@@ -9,7 +9,7 @@ datasource db {
 
 model RLRank {
   id    Int    @id @default(autoincrement())
-  name  String
+  name  String @unique
   order Int
 
   players Player[]

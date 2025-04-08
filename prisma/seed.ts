@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import "dotenv/config";
 const prisma = new PrismaClient();
 
 async function main() {
@@ -12,13 +13,20 @@ async function main() {
     "Grandchampion",
     "Supersoniclegend"
   ];
-  await prisma.rLRank.createMany({
-    data: roles.map((role, i) => ({
-      name: role,
-      order: i
-    }))
-  })
+  await Promise.all(
+    roles.map((role, i) => {
+      return prisma.rLRank.upsert({
+        where: { name: role },
+        update: {},
+        create: {
+          name: role,
+          order: i
+        }
+      });
+    }),
+  );
 }
+
 main()
   .then(async () => {
     await prisma.$disconnect();
