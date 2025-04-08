@@ -3,7 +3,7 @@ import "dotenv/config";
 import express from "express";
 
 import { authRouter } from "./router/auth";
-import { inscriptionsRouter } from "./router/inscriptions";
+import { teamsRouter } from "./router/teams";
 
 const app = express();
 app.use(cors());
@@ -11,7 +11,7 @@ app.use(express.json());
 
 const apiRouter = express.Router();
 apiRouter.use('/auth', authRouter);
-apiRouter.use('/inscriptions', inscriptionsRouter );
+apiRouter.use('/teams', teamsRouter );
 
 app.use("/api", apiRouter);
 
