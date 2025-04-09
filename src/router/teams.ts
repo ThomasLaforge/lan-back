@@ -16,18 +16,18 @@ teamsRouter.get("/", async (req, res) => {
 });
 
 teamsRouter.post("/", async (req, res) => {
-    const { name, players } = req.body;
+    const { name, acronym, players } = req.body;
     if(!name || !players) {
         res.status(400).send("Missing required information");
     }
     else {
         const newinstrument = await prisma.team.create({
             data: {
-                name, 
+                name,
+                acronym: acronym,
                 players: {
                     createMany: {
                         data: players.map((player: any) => ({
-                            acronym: player.acronym,
                             name: player.name,
                             firstname: player.firstname,
                             pseudo: player.pseudo,
