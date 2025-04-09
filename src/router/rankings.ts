@@ -19,8 +19,8 @@ rankingsRouter.get("/", async (req, res) => {
   const results = await prisma.match.findMany();
   const teams = await prisma.team.findMany({
     include: {
-      players: true
-    }
+      players: true,
+    },
   });
   // Get nb wins and losses
   const wins = results.reduce((acc, match) => {
@@ -34,8 +34,7 @@ rankingsRouter.get("/", async (req, res) => {
   const losses = results.reduce((acc, match) => {
     if (match.score1 < match.score2) {
       acc[match.team1Id] = (acc[match.team1Id] || 0) + 1;
-    }
-    else if (match.score1 > match.score2) {
+    } else if (match.score1 > match.score2) {
       acc[match.team2Id] = (acc[match.team2Id] || 0) + 1;
     }
     return acc;
@@ -47,8 +46,9 @@ rankingsRouter.get("/", async (req, res) => {
     const teamLosses = losses[team.id] || 0;
     return {
       équipe: team.name,
+      acronym: team.acronym,
       win: teamWins,
-      loss: teamLosses
+      loss: teamLosses,
     };
   });
   // Sort ranks
@@ -61,10 +61,10 @@ rankingsRouter.get("/", async (req, res) => {
   // Add rank number
   const ranks = unorderedRanks.map((rank, index) => ({
     ...rank,
-    rank: index + 1
+    rank: index + 1,
   }));
-  
+
   return res.json({
-    ranks: unorderedRanks
+    ranks: unorderedRanks,
   });
-})
+});

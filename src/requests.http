@@ -31,6 +31,54 @@ Content-Type: application/json
   ]
 }
 
+###
+POST {{apiUrl}}/api/teams
+Content-Type: application/json
+
+{
+  "name": "Team Nem",
+  "acronym": "TOC",
+  "players": [
+    {
+      "name": "Player Nem",
+      "firstname": "First Nem",
+      "pseudo": "xXx_BG38_xXx",
+      "rankId": 5,
+      "promoId": 1
+    },
+    {
+      "name": "DOE",
+      "firstname": "John",
+      "pseudo": "xXx_Killer_xXx",
+      "rankId": 1,
+      "promoId": 4
+    }
+  ]
+}
+
+###
+POST {{apiUrl}}/api/auth/local
+Content-Type: application/json
+
+{
+  "pseudo": "admin",
+  "motdpasse":"password"
+}
+
+###
+POST {{apiUrl}}/api/results
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicHNldWRvIjoiYWRtaW4iLCJtb3RkcGFzc2UiOiIkMmIkMTAkWWVYV0JkajhyLi9WSy5YL1J1NnIudVQvZDFsV2tNTzJCNkYzQVNTMXNvRVE4cnA0dGk3UWEiLCJpYXQiOjE3NDQxODMwMDh9.svY2cka3DEnLMAoL9bnZ70PQN_c-t_8XFR6GS48MLkI
+
+{
+  "data": {
+    "teamOneId": 1,
+    "teamTwoId": 2,
+    "score1": 3,
+    "score2": 1
+  }
+}
+
 ### GET teams
 GET {{apiUrl}}/api/teams
 
